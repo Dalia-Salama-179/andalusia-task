@@ -1,0 +1,63 @@
+header {
+  padding: 0 15px;
+  background-color: #ffffff;
+  box-shadow: 0px 3px 10px #dfdede;
+  display: flex;
+  justify-content: space-between;
+}
+header .logo-wrapper {
+  width: 145px;
+  padding: 10px 0;
+}
+header .logo-wrapper img {
+  width: 100%;
+}
+header .right-side {
+  display: flex;
+  align-items: center;
+}
+header .right-side .language {
+  height: 100%;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  border-right: 2px solid #e9eff6;
+  margin-right: 14px;
+}
+header .right-side .k-dropdown {
+  width: auto;
+}
+header .right-side .k-dropdown .k-dropdown-wrap {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none;
+}
+header .right-side .k-dropdown .k-dropdown-wrap.k-state-focused {
+  box-shadow: none !important;
+}
+header .right-side .user-data {
+  display: flex;
+  align-items: center;
+}
+header .right-side .user-data img {
+  width: 37px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+header .right-side .user-data p {
+  margin: 0;
+  color: #0357a8;
+}
+header .right-side .user-data:focus {
+  outline: none !important;
+}
+header .right-side .k-menu:not(.k-context-menu) > .k-item:focus, header .right-side .k-menu:not(.k-context-menu) > .k-item.k-state-focused {
+  box-shadow: none !important;
+}
+
+body {
+  background-color: #f3f9ff;
+  margin: 0;
+}
+
+/*# sourceMappingURL=index.css.map */
