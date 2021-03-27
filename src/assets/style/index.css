@@ -84,11 +84,14 @@ header .right-side .k-menu:not(.k-context-menu) > .k-item:focus, header .right-s
   padding: 10px 0;
   margin: 0;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
 }
 .breadcrumb ul li {
   margin-right: 12px;
   padding-right: 12px;
   position: relative;
+  font-size: 14px;
 }
 .breadcrumb ul li:not(:last-of-type):after {
   position: absolute;
@@ -96,6 +99,13 @@ header .right-side .k-menu:not(.k-context-menu) > .k-item:focus, header .right-s
   font-size: 13px;
   right: 0;
   top: 0px;
+  color: #87add2;
+}
+.breadcrumb ul li a {
+  color: #87add2;
+}
+.breadcrumb ul li span {
+  color: #ffffff;
 }
 
 body {
@@ -113,6 +123,10 @@ body {
   background-image: none !important;
   border-radius: 5px !important;
   padding: 8px;
+}
+
+a {
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=index.css.map */
