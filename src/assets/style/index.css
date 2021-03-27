@@ -1,3 +1,4 @@
+@charset "UTF-8";
 header {
   padding: 0 15px;
   background-color: #ffffff;
@@ -55,9 +56,63 @@ header .right-side .k-menu:not(.k-context-menu) > .k-item:focus, header .right-s
   box-shadow: none !important;
 }
 
+.breadcrumb {
+  background-color: #0357a8;
+  border-radius: 5px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.breadcrumb #menu {
+  border-right: 2px solid #206ab2;
+  display: inline-block;
+  margin-right: 10px;
+}
+.breadcrumb #menu svg {
+  width: 15px;
+  height: 15px;
+  fill: #ffffff;
+  padding: 10px;
+}
+.breadcrumb #home {
+  width: 20px;
+  height: 15px;
+  fill: #ffffff;
+}
+.breadcrumb ul {
+  padding: 10px 0;
+  margin: 0;
+  list-style: none;
+}
+.breadcrumb ul li {
+  margin-right: 12px;
+  padding-right: 12px;
+  position: relative;
+}
+.breadcrumb ul li:not(:last-of-type):after {
+  position: absolute;
+  content: "›";
+  font-size: 13px;
+  right: 0;
+  top: 0px;
+}
+
 body {
   background-color: #f3f9ff;
   margin: 0;
+}
+
+.page-content {
+  margin: 10px 15px;
+}
+
+.primary-btn.k-button {
+  background-color: #3f8cd6 !important;
+  color: #ffffff !important;
+  background-image: none !important;
+  border-radius: 5px !important;
+  padding: 8px;
 }
 
 /*# sourceMappingURL=index.css.map */
