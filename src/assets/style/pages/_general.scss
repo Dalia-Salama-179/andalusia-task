@@ -1,9 +1,15 @@
+$danger: #ff0000;
+
+.text-danger {
+    color: $danger;
+}
+
 body {
     background-color: #f3f9ff;
     margin: 0;
 }
 
-.page-content {
+.page-wrapper {
     margin: 10px 15px;
 }
 
@@ -17,4 +23,17 @@ body {
 
 a {
     text-decoration: none;
+}
+
+.page-title {
+    margin: 0 20px 15px;
+}
+
+.page-content {
+    background-color: #ffffff;
+    padding: 16px 60px;
+}
+
+.d-block {
+    display: block !important;
 }

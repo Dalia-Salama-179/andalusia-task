@@ -108,12 +108,16 @@ header .right-side .k-menu:not(.k-context-menu) > .k-item:focus, header .right-s
   color: #ffffff;
 }
 
+.text-danger {
+  color: #ff0000;
+}
+
 body {
   background-color: #f3f9ff;
   margin: 0;
 }
 
-.page-content {
+.page-wrapper {
   margin: 10px 15px;
 }
 
@@ -127,6 +131,84 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.page-title {
+  margin: 0 20px 15px;
+}
+
+.page-content {
+  background-color: #ffffff;
+  padding: 16px 60px;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.new-purchase .sub-data-title {
+  border-bottom: 1px solid #d7e4f1;
+  padding-bottom: 10px;
+  color: #0c3c6b;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.new-purchase .sub-data-title svg {
+  fill: #18d4d9;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.new-purchase label {
+  color: #62819f;
+  display: block;
+  margin-bottom: 10px;
+}
+.new-purchase label span {
+  color: #ff0000;
+}
+.new-purchase .basic-info {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 25px -15px;
+}
+.new-purchase .basic-info > div {
+  padding: 0 15px;
+  flex: 1;
+}
+.new-purchase .basic-info input {
+  width: 100%;
+}
+.new-purchase .basic-info .drafts {
+  font-size: 13px;
+  margin: 8px;
+  display: flex;
+  align-items: center;
+}
+.new-purchase .basic-info .drafts p {
+  margin: 0;
+}
+.new-purchase .basic-info .drafts svg {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px;
+}
+.new-purchase .basic-info .drafts > div {
+  position: relative;
+}
+.new-purchase .basic-info .drafts ul {
+  position: absolute;
+  list-style: none;
+  top: -14px;
+  right: 30px;
+  background: #fff;
+  box-shadow: 1px 1px 4px #ccc;
+  padding: 5px 40px 5px 10px;
+  display: none;
+}
+.new-purchase input {
+  background-color: #eff2f5;
 }
 
 /*# sourceMappingURL=index.css.map */
