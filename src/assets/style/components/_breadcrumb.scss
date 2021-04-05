@@ -60,3 +60,27 @@
         }
     }
 }
+
+.ar {
+    .breadcrumb {
+        #menu {
+            margin-right: 0;
+            margin-left: 10px;
+            border-right: none;
+            border-left: 2px solid #206ab2;
+        }
+        ul {
+            li{
+                margin-left: 12px;
+                padding-left: 12px;
+                margin-right: 0;
+                padding-right: 0;
+
+                &:not(:last-of-type):after {
+                    right: auto;
+                    left: 0;
+                }
+            }
+        }
+    }
+}

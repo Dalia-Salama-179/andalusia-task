@@ -1,5 +1,9 @@
 $danger: #ff0000;
 
+p {
+    margin: 0;
+}
+
 .text-danger {
     color: $danger;
 }
@@ -20,6 +24,7 @@ body {
     border-radius: 5px !important;
     padding: 8px;
 }
+
 
 a {
     text-decoration: none;
@@ -49,4 +54,14 @@ a {
 .pointer-events-none {
     opacity: 0.6;
     pointer-events: none;
+}
+
+.ar {
+    body {
+        direction: rtl;
+    }
+
+    th, td {
+        text-align: right !important;
+    }
 }

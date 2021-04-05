@@ -85,6 +85,16 @@
             margin-right: 5px;
         }
     }
+}
 
-    .k-grid-header-wrap{}
+.ar {
+    .new-purchase {
+        .sub-data-title svg {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+        .new-product-btn {
+            flex-direction: row-reverse;
+        }
+    }
 }

@@ -56,6 +56,17 @@ header .right-side .k-menu:not(.k-context-menu) > .k-item:focus, header .right-s
   box-shadow: none !important;
 }
 
+.ar header .right-side .language {
+  border-right: none;
+  border-left: 2px solid #e9eff6;
+  margin-right: 0;
+  margin-left: 14px;
+}
+.ar header .user-data img {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
 .breadcrumb {
   background-color: #0357a8;
   border-radius: 5px;
@@ -108,6 +119,27 @@ header .right-side .k-menu:not(.k-context-menu) > .k-item:focus, header .right-s
   color: #ffffff;
 }
 
+.ar .breadcrumb #menu {
+  margin-right: 0;
+  margin-left: 10px;
+  border-right: none;
+  border-left: 2px solid #206ab2;
+}
+.ar .breadcrumb ul li {
+  margin-left: 12px;
+  padding-left: 12px;
+  margin-right: 0;
+  padding-right: 0;
+}
+.ar .breadcrumb ul li:not(:last-of-type):after {
+  right: auto;
+  left: 0;
+}
+
+p {
+  margin: 0;
+}
+
 .text-danger {
   color: #ff0000;
 }
@@ -157,6 +189,13 @@ a {
 .pointer-events-none {
   opacity: 0.6;
   pointer-events: none;
+}
+
+.ar body {
+  direction: rtl;
+}
+.ar th, .ar td {
+  text-align: right !important;
 }
 
 .new-purchase .sub-data-title {
@@ -231,6 +270,14 @@ a {
   width: 20px;
   height: 18px;
   margin-right: 5px;
+}
+
+.ar .new-purchase .sub-data-title svg {
+  margin-right: 0;
+  margin-left: 10px;
+}
+.ar .new-purchase .new-product-btn {
+  flex-direction: row-reverse;
 }
 
 /*# sourceMappingURL=index.css.map */

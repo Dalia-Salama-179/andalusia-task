@@ -69,3 +69,18 @@ header {
         }
     }
 }
+
+.ar {
+    header {
+        .right-side .language {
+            border-right: none;
+            border-left: 2px solid #e9eff6;
+            margin-right: 0;
+            margin-left: 14px;
+        }
+        .user-data img {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+    }
+}

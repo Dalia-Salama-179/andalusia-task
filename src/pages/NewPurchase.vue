@@ -3,19 +3,19 @@
         <!-- breadcrumb -->
         <breadcrumb>
             <li>
-                <router-link to="/">Inventory</router-link>
+                <router-link to="/">{{$t('inventory')}}</router-link>
             </li>
             <li>
-                <router-link to="/">Inventory Operations</router-link>
+                <router-link to="/">{{$t('inventoryOperations')}}</router-link>
             </li>
             <li>
-                <router-link to="/">Purchase Requisition List</router-link>
+                <router-link to="/">{{$t('requisitionList')}}</router-link>
             </li>
-            <li><span>New Purchase Requisition</span></li>
+            <li><span>{{$t('newRequisition')}}</span></li>
         </breadcrumb>
 
         <!-- page title -->
-        <h2 class="page-title">{{ $route.name }}</h2>
+        <h2 class="page-title">{{$t($route.name)}}</h2>
 
         <div class="page-content">
             <form>
@@ -23,18 +23,18 @@
                     <svg>
                         <use xlink:href="@/assets/images/sprite.svg#info"></use>
                     </svg>
-                    Basic Information
+                    {{$t('basicInfo')}}
                 </div>
                 <div class="basic-info">
                     <!-- PR code -->
                     <div>
-                        <label>Purchase Requisition Code</label>
-                        <k-input disabled="disabled" placeholder="PR Code is automatically generated"></k-input>
+                        <label>{{$t('PRCode')}}</label>
+                        <k-input disabled="disabled" :placeholder="$t('PRAuto')"></k-input>
                     </div>
 
                     <!-- warehouse -->
                     <div>
-                        <label>Warehouse <span>*</span></label>
+                        <label>{{$t('warehouse')}} <span>*</span></label>
                         <dropdownlist
                                 :data-items='warehouses'
                                 :text-field="'name'"
@@ -62,7 +62,7 @@
 
                     <!-- preferred delivery date -->
                     <div>
-                        <label>preferred Delivery Date <span>*</span></label>
+                        <label>{{$t('deliveryDate')}} <span>*</span></label>
                         <datepicker
                                 :min="new Date()"
                                 :default-value="new Date()"
@@ -76,12 +76,24 @@
                     <svg>
                         <use xlink:href="@/assets/images/sprite.svg#details"></use>
                     </svg>
-                    Product Details
+                    {{$t('productDetails')}}
                 </div>
 
-                <custom-grid></custom-grid>
+                <custom-grid :warehouse="form.warehouse"
+                             @addingProduct="addingProduct"
+                             @productAdded="productAdded = true"></custom-grid>
             </form>
         </div>
+
+        <!-- dialog showed when we change warehouse -->
+        <k-dialog v-if="visibleDialog" :title="'Please confirm'" @close="toggleDialog">
+            <p :style="{ margin: '25px', textAlign: 'center' }">The added products lines will be removed as you will
+                change the warehouse, Are you sure you want to change?</p>
+            <dialog-actions-bar>
+                <button class="k-button" @click='toggleDialog'>No</button>
+                <button class="k-button" @click='approveChanges'>Yes</button>
+            </dialog-actions-bar>
+        </k-dialog>
     </div>
 </template>
 
@@ -92,7 +104,7 @@
     import Breadcrumb from "../components/Breadcrumb";
     import Vue from 'vue'
     import Grid from "./Grid";
-
+    import {Dialog, DialogActionsBar} from '@progress/kendo-vue-dialogs';
 
     export default {
         name: "NewPurchase",
@@ -101,10 +113,14 @@
             'dropdownlist': DropDownList,
             'k-input': Input,
             'datepicker': DatePicker,
-            'custom-grid': Grid
+            'custom-grid': Grid,
+            'k-dialog': Dialog,
+            'dialog-actions-bar': DialogActionsBar
+
         },
         data() {
             return {
+                visibleDialog: false,
                 value: {id: 0, name: 'Select Deliver to Whom ...'},
                 form: {
                     date: new Date()
@@ -119,27 +135,51 @@
                 ],
                 drafts: [],
                 showDraft: false,
-                filter: {
-                    logic: "and",
-                    filters: []
-                },
-                skip: 0,
-                take: 10,
+                productInAction: null,
+                warehouseBackup: {},
+                productAdded: false
             }
         },
         computed: {},
         methods: {
+            toggleDialog() {
+                this.visibleDialog = !this.visibleDialog;
+            },
             warehouseSelected(event) {
-                Vue.set(this.value, 'id', event.value.id);
-                Vue.set(this.value, 'name', event.value.name);
-                Vue.set(this.form, 'warehouse', event.value.id);
+                if (!this.productInAction && !this.productAdded) {
+                    Vue.set(this.value, 'id', event.value.id);
+                    Vue.set(this.value, 'name', event.value.name);
+                    Vue.set(this.form, 'warehouse', event.value.id);
+                    this.showDraft = false;
+                    if (Object.hasOwnProperty.call(event.value, 'drafts')) {
+                        this.drafts = event.value.drafts;
+                    } else this.drafts = [];
+                } else {
+                    this.toggleDialog();
+                    Vue.set(this.warehouseBackup, 'id', event.value.id);
+                    Vue.set(this.warehouseBackup, 'name', event.value.name);
+                    if (event.value.drafts) Vue.set(this.warehouseBackup, 'drafts', event.value.drafts);
+                }
+            },
+
+            addingProduct(payload) {
+                this.productInAction = payload
+            },
+
+            approveChanges() {
+                this.value = {...this.warehouseBackup};
+                Vue.set(this.form, 'warehouse', this.warehouseBackup.id);
                 this.showDraft = false;
-                if (Object.hasOwnProperty.call(event.value, 'drafts')) {
-                    this.drafts = event.value.drafts;
-                } else this.drafts = []
+                if (Object.hasOwnProperty.call(this.warehouseBackup, 'drafts')) {
+                    this.drafts = this.warehouseBackup.drafts;
+                } else this.drafts = [];
+
+                this.productAdded = false;
+                this.toggleDialog();
             }
         }
     }
+
 </script>
 
 <style scoped>

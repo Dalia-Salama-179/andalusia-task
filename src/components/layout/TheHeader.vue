@@ -41,7 +41,8 @@
 <script>
     import {DropDownList} from '@progress/kendo-vue-dropdowns';
     import { Menu } from '@progress/kendo-layout-vue-wrapper';
-
+    import i18n from "../../i18n";
+    import $ from 'jquery'
 
     export default {
         name: "TheHeader",
@@ -58,7 +59,19 @@
                 selectedLang: {key: 'en', value: 'EN'}
             };
         },
-
+        watch:{
+            'selectedLang'() {
+                i18n.locale = this.selectedLang.key;
+                $("html").attr("lang", this.selectedLang.key);
+                if (this.selectedLang.key == 'ar') {
+                    $('html').removeClass('en');
+                    $('html').addClass('ar')
+                } else {
+                    $('html').removeClass('ar');
+                    $('html').addClass('en')
+                }
+            },
+        },
         methods: {
             handleLanguageChange(event) {
                 this.selectedLang = event.value;
