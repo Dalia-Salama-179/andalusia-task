@@ -75,4 +75,16 @@
     input {
         background-color: #eff2f5;
     }
+
+    .new-product-btn {
+        margin: 15px 0;
+        svg {
+            fill: #ffffff;
+            width: 20px;
+            height: 18px;
+            margin-right: 5px;
+        }
+    }
+
+    .k-grid-header-wrap{}
 }

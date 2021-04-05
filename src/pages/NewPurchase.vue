@@ -15,7 +15,7 @@
         </breadcrumb>
 
         <!-- page title -->
-        <h2 class="page-title">{{$route.name}}</h2>
+        <h2 class="page-title">{{ $route.name }}</h2>
 
         <div class="page-content">
             <form>
@@ -54,7 +54,7 @@
                                     </svg>
                                 </a>
                                 <ul :class="{'d-block': showDraft}">
-                                    <li v-for="(draft, index) in drafts" :key="index">{{draft}}</li>
+                                    <li v-for="(draft, index) in drafts" :key="index">{{ draft }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -78,6 +78,8 @@
                     </svg>
                     Product Details
                 </div>
+
+                <custom-grid></custom-grid>
             </form>
         </div>
     </div>
@@ -86,9 +88,11 @@
 <script>
     import {DropDownList} from '@progress/kendo-vue-dropdowns';
     import {Input} from '@progress/kendo-vue-inputs';
-    import { DatePicker } from '@progress/kendo-vue-dateinputs';
+    import {DatePicker} from '@progress/kendo-vue-dateinputs';
     import Breadcrumb from "../components/Breadcrumb";
     import Vue from 'vue'
+    import Grid from "./Grid";
+
 
     export default {
         name: "NewPurchase",
@@ -96,7 +100,8 @@
             Breadcrumb,
             'dropdownlist': DropDownList,
             'k-input': Input,
-            'datepicker': DatePicker
+            'datepicker': DatePicker,
+            'custom-grid': Grid
         },
         data() {
             return {
@@ -114,8 +119,15 @@
                 ],
                 drafts: [],
                 showDraft: false,
+                filter: {
+                    logic: "and",
+                    filters: []
+                },
+                skip: 0,
+                take: 10,
             }
         },
+        computed: {},
         methods: {
             warehouseSelected(event) {
                 Vue.set(this.value, 'id', event.value.id);

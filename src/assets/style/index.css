@@ -146,6 +146,19 @@ a {
   display: block !important;
 }
 
+.k-grid {
+  border: none !important;
+}
+
+.k-dropdown, .k-datepicker {
+  width: 100% !important;
+}
+
+.pointer-events-none {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .new-purchase .sub-data-title {
   border-bottom: 1px solid #d7e4f1;
   padding-bottom: 10px;
@@ -209,6 +222,15 @@ a {
 }
 .new-purchase input {
   background-color: #eff2f5;
+}
+.new-purchase .new-product-btn {
+  margin: 15px 0;
+}
+.new-purchase .new-product-btn svg {
+  fill: #ffffff;
+  width: 20px;
+  height: 18px;
+  margin-right: 5px;
 }
 
 /*# sourceMappingURL=index.css.map */
