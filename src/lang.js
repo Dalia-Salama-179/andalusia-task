@@ -12,7 +12,12 @@ const messages = {
         productDetails: 'Product Details',
         newProduct: 'New Product',
         warehouseNotes: 'Warehouse Notes',
-        writeWarehouseNotes: 'Write Warehouse Notes'
+        writeWarehouseNotes: 'Write Warehouse Notes',
+        profile: 'Profile',
+        logout: 'Logout',
+        save: 'Save',
+        saveSend: 'Save & Send',
+        cancel: 'Cancel'
     },
     ar: {
         inventory: 'المخزون',
@@ -27,7 +32,12 @@ const messages = {
         productDetails: 'تفاصيل المنتج',
         newProduct: 'منتج جديد',
         warehouseNotes: 'ملاحظات عن المخزن',
-        writeWarehouseNotes: 'دون ملاحظات عن المخزن'
+        writeWarehouseNotes: 'دون ملاحظات عن المخزن',
+        profile: 'ملفك الشخصي',
+        logout: 'تسجيل خروج',
+        save: 'حفظ',
+        saveSend: 'حفظ و ارسال',
+        cancel: 'إلغاء'
     }
 };
 

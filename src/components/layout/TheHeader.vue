@@ -28,8 +28,8 @@
                         </div>
                     </div>
                     <ul>
-                        <li>Profile</li>
-                        <li>Logout</li>
+                        <li>{{$t('profile')}}</li>
+                        <li>{{$t('logout')}}</li>
                     </ul>
                 </li>
             </kendo-menu>

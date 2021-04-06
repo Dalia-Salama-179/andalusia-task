@@ -116,9 +116,18 @@
             }
         },
         methods: {
+          /**
+           * Method invoked when we filter data
+           * @param ev
+           */
             filterChange: function (ev) {
                 this.filter = ev.filter;
             },
+
+          /**
+           * Method invoked when we change in form that add product
+           * @param e
+           */
             itemChange: function (e) {
                 const data = this.gridData.slice();
                 const index = data.findIndex(d => d.ProductID === e.dataItem.ProductID);
@@ -134,13 +143,23 @@
                     event.dataItem[e.field] = e.value;
                 }
             },
-            addRecord() {
+
+          /**
+           * Method invoked when we click add product button
+           */
+          addRecord() {
                 const newRecord = {ProductID: this.gridData.length + 1};
                 const data = this.gridData.slice();
                 data.unshift(newRecord);
                 this.gridData = data;
                 this.editID = newRecord.ProductID;
             },
+
+          /**
+           * Method invoked when we click in save button
+           * Save data we add in the form, add it to gridData
+           * @param props
+           */
             save(props) {
                 if (!props.dataItem['ProductName']) {
                     Vue.set(this.errors, 'ProductName', 'Product name is required')
@@ -161,10 +180,20 @@
                     this.$emit('productAdded', true)
                 }
             },
-            cancel() {
+
+          /**
+           * Method invoked when we cancel changes we add in the add product form
+           */
+          cancel() {
                 this.gridData.splice(0, 1);
                 this.editID = null
             },
+
+          /**
+           * Method invoked when we select an option from UOM select
+           * @param e
+           * @param dataItem
+           */
             ddChange: function (e, dataItem) {
                 const index = this.gridData.findIndex(d => d.ProductID === dataItem.ProductID);
                 Vue.set(this.gridData[index], 'uom', e.target.value);

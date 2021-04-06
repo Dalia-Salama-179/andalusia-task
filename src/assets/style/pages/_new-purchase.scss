@@ -85,6 +85,41 @@
             margin-right: 5px;
         }
     }
+
+    .buttons-wrapper {
+        margin: 10px 0;
+        display: flex;
+        flex-direction: row-reverse;
+
+        button {
+            margin: 0 8px;
+            width: 110px;
+            background-image: none;
+            border-radius: 5px;
+
+            &.save {
+                background-color: #18d4d9;
+                color: #ffffff;
+            }
+
+            &.save-send {
+                background-color: #59ccaa;
+                color: #ffffff;
+            }
+        }
+    }
+
+    textarea {
+        border: none;
+        background: #f5f7f9;
+        padding: 4px 8px;
+        color: #656565;
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
 }
 
 .ar {

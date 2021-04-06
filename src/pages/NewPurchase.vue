@@ -17,78 +17,86 @@
         <!-- page title -->
         <h2 class="page-title">{{$t($route.name)}}</h2>
 
-        <div class="page-content">
+        <div>
             <form>
-                <div class="sub-data-title">
-                    <svg>
-                        <use xlink:href="@/assets/images/sprite.svg#info"></use>
-                    </svg>
-                    {{$t('basicInfo')}}
-                </div>
-                <div class="basic-info">
-                    <!-- PR code -->
-                    <div>
-                        <label>{{$t('PRCode')}}</label>
-                        <k-input disabled="disabled" :placeholder="$t('PRAuto')"></k-input>
+                <div class="page-content">
+
+                    <div class="sub-data-title">
+                        <svg>
+                            <use xlink:href="@/assets/images/sprite.svg#info"></use>
+                        </svg>
+                        {{$t('basicInfo')}}
                     </div>
+                    <div class="basic-info">
+                        <!-- PR code -->
+                        <div>
+                            <label>{{$t('PRCode')}}</label>
+                            <k-input disabled="disabled" :placeholder="$t('PRAuto')"></k-input>
+                        </div>
 
-                    <!-- warehouse -->
-                    <div>
-                        <label>{{$t('warehouse')}} <span>*</span></label>
-                        <dropdownlist
-                                :data-items='warehouses'
-                                :text-field="'name'"
-                                :data-item-key="'id'"
-                                :value="value"
-                                @change="warehouseSelected"
-                        >
-                        </dropdownlist>
+                        <!-- warehouse -->
+                        <div>
+                            <label>{{$t('warehouse')}} <span>*</span></label>
+                            <dropdownlist
+                                    :data-items='warehouses'
+                                    :text-field="'name'"
+                                    :data-item-key="'id'"
+                                    :value="value"
+                                    @change="warehouseSelected"
+                            >
+                            </dropdownlist>
 
-                        <!-- drafts -->
-                        <div class="drafts" v-if="drafts.length > 0">
-                            <p class="text-danger">This warehouse already has other drafts</p>
-                            <div>
-                                <a href="#" @click.prevent.stop="showDraft = !showDraft">
-                                    <svg>
-                                        <use xlink:href="@/assets/images/sprite.svg#exclamation-mark"></use>
-                                    </svg>
-                                </a>
-                                <ul :class="{'d-block': showDraft}">
-                                    <li v-for="(draft, index) in drafts" :key="index">{{ draft }}</li>
-                                </ul>
+                            <!-- drafts -->
+                            <div class="drafts" v-if="drafts.length > 0">
+                                <p class="text-danger">This warehouse already has other drafts</p>
+                                <div>
+                                    <a href="#" @click.prevent.stop="showDraft = !showDraft">
+                                        <svg>
+                                            <use xlink:href="@/assets/images/sprite.svg#exclamation-mark"></use>
+                                        </svg>
+                                    </a>
+                                    <ul :class="{'d-block': showDraft}">
+                                        <li v-for="(draft, index) in drafts" :key="index">{{ draft }}</li>
+                                    </ul>
+                                </div>
                             </div>
+                        </div>
+
+                        <!-- preferred delivery date -->
+                        <div>
+                            <label>{{$t('deliveryDate')}} <span>*</span></label>
+                            <datepicker
+                                    :min="new Date()"
+                                    :default-value="new Date()"
+                                    :format="'dd/MM/yyyy'"
+                                    v-model="form.date"
+                            ></datepicker>
                         </div>
                     </div>
 
-                    <!-- preferred delivery date -->
+                    <div class="sub-data-title">
+                        <svg>
+                            <use xlink:href="@/assets/images/sprite.svg#details"></use>
+                        </svg>
+                        {{$t('productDetails')}}
+                    </div>
+
+                    <custom-grid :warehouse="form.warehouse"
+                                 @addingProduct="addingProduct"
+                                 @productAdded="productAdded = true"></custom-grid>
+
+                    <!-- warehouse notes -->
                     <div>
-                        <label>{{$t('deliveryDate')}} <span>*</span></label>
-                        <datepicker
-                                :min="new Date()"
-                                :default-value="new Date()"
-                                :format="'dd/MM/yyyy'"
-                                v-model="form.date"
-                        ></datepicker>
+                        <label>{{$t('warehouseNotes')}}</label>
+                        <textarea cols="30" rows="6" :placeholder="$t('writeWarehouseNotes')"
+                                  v-model="form.notes"></textarea>
                     </div>
                 </div>
-
-                <div class="sub-data-title">
-                    <svg>
-                        <use xlink:href="@/assets/images/sprite.svg#details"></use>
-                    </svg>
-                    {{$t('productDetails')}}
+                <div class="buttons-wrapper">
+                    <button class="k-button save-send">{{$t('saveSend')}}</button>
+                    <button class="k-button save">{{$t('save')}}</button>
+                    <button class="k-button k-text-primary">{{$t('cancel')}}</button>
                 </div>
-
-                <custom-grid :warehouse="form.warehouse"
-                             @addingProduct="addingProduct"
-                             @productAdded="productAdded = true"></custom-grid>
-
-                <!-- warehouse notes -->
-                <div>
-                    <label>{{$t('warehouseNotes')}}</label>
-                    <textarea cols="30" rows="10" :placeholder="$t('writeWarehouseNotes')"></textarea>
-                </div>
-
             </form>
         </div>
 
@@ -110,7 +118,7 @@
     import {DatePicker} from '@progress/kendo-vue-dateinputs';
     import Breadcrumb from "../components/Breadcrumb";
     import Vue from 'vue'
-    import Grid from "./Grid";
+    import Grid from "../components/NewPurchase/Grid";
     import {Dialog, DialogActionsBar} from '@progress/kendo-vue-dialogs';
 
     export default {
@@ -149,9 +157,17 @@
         },
         computed: {},
         methods: {
+            /**
+             * Method invoked when we change warehouse and w already added products
+             */
             toggleDialog() {
                 this.visibleDialog = !this.visibleDialog;
             },
+
+            /**
+             * Method invoked when we select warehouse
+             * @param {event} event
+             */
             warehouseSelected(event) {
                 if (!this.productInAction && !this.productAdded) {
                     Vue.set(this.value, 'id', event.value.id);
@@ -169,10 +185,17 @@
                 }
             },
 
+            /**
+             * Method that invoked when we click add product button
+             * @param {number} payload
+             */
             addingProduct(payload) {
                 this.productInAction = payload
             },
 
+            /**
+             * Method invoked when we click ok in the dialog
+             */
             approveChanges() {
                 this.value = {...this.warehouseBackup};
                 Vue.set(this.form, 'warehouse', this.warehouseBackup.id);

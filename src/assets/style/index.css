@@ -271,6 +271,35 @@ a {
   height: 18px;
   margin-right: 5px;
 }
+.new-purchase .buttons-wrapper {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.new-purchase .buttons-wrapper button {
+  margin: 0 8px;
+  width: 110px;
+  background-image: none;
+  border-radius: 5px;
+}
+.new-purchase .buttons-wrapper button.save {
+  background-color: #18d4d9;
+  color: #ffffff;
+}
+.new-purchase .buttons-wrapper button.save-send {
+  background-color: #59ccaa;
+  color: #ffffff;
+}
+.new-purchase textarea {
+  border: none;
+  background: #f5f7f9;
+  padding: 4px 8px;
+  color: #656565;
+}
+.new-purchase textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
 
 .ar .new-purchase .sub-data-title svg {
   margin-right: 0;

@@ -1,5 +1,4 @@
 <template>
-
     <td v-if="dataItem['inEdit']">
         <button class="k-button k-grid-cancel-command" @click="cancelDiscardHandler">
             <svg>
@@ -13,7 +12,7 @@
         </button>
     </td>
     <td v-else>
-        fvd
+
     </td>
 </template>
 <script>
@@ -32,12 +31,6 @@
             editor: String
         },
         methods: {
-            editHandler: function () {
-                this.$emit('edit', {dataItem: this.dataItem});
-            },
-            removeHandler: function () {
-                this.$emit('remove', {dataItem: this.dataItem});
-            },
             addUpdateHandler: function () {
                 this.$emit('save', {dataItem: this.dataItem});
             },
