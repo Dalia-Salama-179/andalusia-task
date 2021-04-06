@@ -82,6 +82,13 @@
                 <custom-grid :warehouse="form.warehouse"
                              @addingProduct="addingProduct"
                              @productAdded="productAdded = true"></custom-grid>
+
+                <!-- warehouse notes -->
+                <div>
+                    <label>{{$t('warehouseNotes')}}</label>
+                    <textarea cols="30" rows="10" :placeholder="$t('writeWarehouseNotes')"></textarea>
+                </div>
+
             </form>
         </div>
 

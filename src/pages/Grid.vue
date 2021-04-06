@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="grid-wrapper">
         <Grid ref="grid"
               :filterable="true"
               :filter="filter"
@@ -174,3 +174,8 @@
     };
 
 </script>
+<style scoped>
+    .grid-wrapper {
+        margin-bottom: 40px;
+    }
+</style>

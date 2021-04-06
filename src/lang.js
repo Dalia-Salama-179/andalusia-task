@@ -10,7 +10,9 @@ const messages = {
         deliveryDate: 'Preferred Delivery Date',
         PRAuto: 'PR Code is automatically generated',
         productDetails: 'Product Details',
-        newProduct: 'New Product'
+        newProduct: 'New Product',
+        warehouseNotes: 'Warehouse Notes',
+        writeWarehouseNotes: 'Write Warehouse Notes'
     },
     ar: {
         inventory: 'المخزون',
@@ -23,7 +25,9 @@ const messages = {
         deliveryDate: 'تارخ التسليم',
         PRAuto: 'كود طلب الشراء يوضع تلقائيا',
         productDetails: 'تفاصيل المنتج',
-        newProduct: 'منتج جديد'
+        newProduct: 'منتج جديد',
+        warehouseNotes: 'ملاحظات عن المخزن',
+        writeWarehouseNotes: 'دون ملاحظات عن المخزن'
     }
 };
 
